@@ -3,10 +3,14 @@ import Image from "next/image";
 // node-id 84:31098 — see .figma-cache/design-context/84-31098-our-story.tsx
 // NOTE: the `capitalize` CSS transform on the whole text block is literal Figma design — every word's
 // first letter is capitalized, including mid-sentence. Kept exactly, not "fixed" to sentence case.
+// Section height 1109px and all positions below are the exact Figma values (frame 84:31098).
 export function OurStory() {
   return (
-    <section className="relative overflow-hidden bg-[#402011] px-6 py-[150px] md:px-[65px]">
-      <div className="pointer-events-none absolute top-[-120px] right-[-100px] h-[700px] w-[700px] md:right-[-50px]">
+    <section className="relative h-[1109px] max-w-full overflow-hidden bg-[#402011]">
+      <div
+        className="pointer-events-none absolute flex items-center justify-center"
+        style={{ left: 855, top: -208, width: 1081, height: 1069 }}
+      >
         <Image
           src="/images/about/our-story-bg.png"
           alt=""
@@ -16,7 +20,7 @@ export function OurStory() {
         />
       </div>
 
-      <div className="relative flex w-[850px] max-w-full flex-col items-start gap-[43px] text-white capitalize">
+      <div className="absolute top-[496px] left-[65px] flex w-[850px] max-w-[calc(100%-130px)] flex-col items-start gap-[43px] text-white capitalize">
         <p className="font-display text-[96px] leading-[1.1] font-extrabold opacity-60">
           Our Story
         </p>

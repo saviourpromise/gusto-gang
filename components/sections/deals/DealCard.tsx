@@ -38,6 +38,7 @@ export function DealCard({ data }: { data: DealCardData }) {
           top: data.photo.top,
           left: `calc(50% - ${data.photo.offsetX}px)`,
           transform: `translateX(-50%) rotate(${data.photo.rotate}deg)`,
+          zIndex: 0,
         }}
       >
         <Image
@@ -50,7 +51,7 @@ export function DealCard({ data }: { data: DealCardData }) {
         />
       </div>
 
-      <div className="absolute top-[27px] left-[38px] flex w-[410px] max-w-[calc(100%-76px)] flex-col items-start gap-[35px]">
+      <div className="absolute top-[27px] left-[38px] z-10 flex w-[410px] max-w-[calc(100%-76px)] flex-col items-start gap-[35px]">
         <Image src={data.icon.src} alt="" width={data.icon.width} height={data.icon.height} />
         <div className="flex flex-col items-start gap-[14px]">
           <p

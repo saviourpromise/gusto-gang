@@ -48,9 +48,15 @@ export function NewsletterSection({ photo }: NewsletterSectionProps) {
         </form>
       </div>
 
-      <div className="relative min-h-[320px] flex-1 overflow-hidden md:min-h-0">
+      {/* Right panel: literal red bg with the photo overflowing past the left/bottom edges
+          (node "Frame 2147240054" — image positioned at roughly x:-15%, y:43%, w:152%, h:84%
+          of its container, clipped by the panel's overflow-hidden, not a simple full-bleed
+          object-cover fill). Confirmed against the Figma screenshot, not fetched via MCP. */}
+      <div className="relative min-h-[320px] flex-1 overflow-hidden bg-brand-red md:min-h-0">
         {photo ? (
-          <Image src={photo.src} alt={photo.alt} fill className="object-cover" />
+          <div className="absolute top-[43%] left-[-15%] h-[84%] w-[152%]">
+            <Image src={photo.src} alt={photo.alt} fill className="object-cover" />
+          </div>
         ) : (
           <AssetPending label="Newsletter section photo" className="h-full w-full" />
         )}
