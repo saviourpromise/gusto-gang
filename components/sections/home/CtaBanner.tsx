@@ -1,17 +1,22 @@
-import { AssetPending } from "@/components/ui/AssetPending";
+import Image from "next/image";
 import { Button } from "@/components/ui/Button";
 import { SectionDivider } from "@/components/ui/SectionDivider";
 
 // node-id 84:31428 (inner stamp card, exact) — see .figma-cache/design-context/84-31428-cta-banner-card.tsx
-// The parent section's full-bleed background photo (node 84:31427, "image 1642") and the "LET'S COOK"
-// sticker badge's exact font-size/rotation (node 84:31435-37) were not pulled this budget — background
-// rendered as AssetPending, badge approximated from the home.png screenshot.
+// Background photo (node 84:31427, "image 1642") fetched via the Figma REST API. The "LET'S COOK"
+// sticker badge's exact font-size/rotation (node 84:31435-37) wasn't pulled — approximated from the
+// home.png screenshot.
 export function CtaBanner() {
   return (
     <section className="relative px-6 py-[79px]">
       <SectionDivider />
       <div className="relative mx-auto max-w-[1440px] overflow-hidden rounded-[10px]">
-        <AssetPending label="CTA banner background photo" className="absolute inset-0" />
+        <Image
+          src="/images/cta/cta-banner-bg.png"
+          alt="Bowl of Nigerian pepper soup with assorted meat"
+          fill
+          className="object-cover"
+        />
 
         <div className="relative flex justify-center py-[244px]">
           <div className="relative w-[698px] max-w-full rounded-stamp shadow-stamp border-5 border-black bg-white px-10 py-[60px] text-center">

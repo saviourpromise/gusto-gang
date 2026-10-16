@@ -1,9 +1,10 @@
-import { AssetPending } from "@/components/ui/AssetPending";
+import Image from "next/image";
 
 // node-id 84:31260 (quote card, exact) — see .figma-cache/design-context/84-31260-testimonial-card.tsx
-// The outer "paper stack" backdrop + photo (node 84:31280, sibling of the quote card) and the carousel
-// dots' exact styling were not pulled this budget — approximated here (cream paper card + plain dots)
-// and flagged for a follow-up Figma call or hand export.
+// Backdrop photo (node 84:31280) fetched via the Figma REST API — it actually resolves to TWO fills
+// (two different customer photos), suggesting a 2nd carousel testimonial this build doesn't have text
+// content for. Only the first (matching the visible slide in the Figma screenshot) is used here.
+// Carousel dots' exact styling wasn't available — approximated (active = solid, inactive = faint).
 // Heading spelling "TESTIMONIOALS" is literal Figma content (typo kept, not corrected) — see 84:31257.
 export function Testimonials() {
   return (
@@ -38,10 +39,14 @@ export function Testimonials() {
             </div>
           </div>
 
-          <AssetPending
-            label="Testimonials backdrop photo"
-            className="h-[600px] w-full max-w-[824px] rounded-[10px]"
-          />
+          <div className="relative h-[600px] w-full max-w-[824px] overflow-hidden rounded-[10px]">
+            <Image
+              src="/images/testimonials/testimonials-bg.jpg"
+              alt="Gusto Gang team member packaging a food delivery order"
+              fill
+              className="object-cover"
+            />
+          </div>
         </div>
 
         <div className="mt-[80px] flex items-center justify-center gap-[9px]" aria-hidden>

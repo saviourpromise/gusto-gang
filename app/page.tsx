@@ -27,9 +27,13 @@ export default function Home() {
       <Reveal>
         <Testimonials />
       </Reveal>
-      {/* Newsletter photo (image 1664) not yet exported — see check-in notes. */}
       <Reveal>
-        <NewsletterSection />
+        <NewsletterSection
+          photo={{
+            src: "/images/home/newsletter-home.png",
+            alt: "Grilled fish and bole (roasted plantain) platter",
+          }}
+        />
       </Reveal>
       <Footer />
     </>

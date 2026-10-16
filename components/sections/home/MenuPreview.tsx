@@ -12,7 +12,7 @@ type PreviewCard = {
 
 const CARDS: PreviewCard[] = [
   {
-    image: "/images/home/menu-preview-1.png",
+    image: "/images/menu/dish-basmati-fried-rice.png",
     alt: "Basmati fried rice topped with grilled chicken",
     name: "Basmati fried rice & chicken",
     price: "7,500",
@@ -20,7 +20,7 @@ const CARDS: PreviewCard[] = [
     shadow: "shadow-[4px_0px_0px_0px_black]",
   },
   {
-    image: "/images/home/menu-preview-2.png",
+    image: "/images/menu/dish-ewa-agoyin.png",
     alt: "Ewa agoyin beans with fried plantain (dodo) and beef",
     name: "Ewa agoyin, dodo and beef",
     price: "10,500",
@@ -28,7 +28,7 @@ const CARDS: PreviewCard[] = [
     shadow: "shadow-[6px_0px_0px_0px_black]",
   },
   {
-    image: "/images/home/menu-preview-3.png",
+    image: "/images/menu/dish-gourmet-cheeseburger.png",
     alt: "Gourmet bacon cheeseburger with fries",
     name: "Gourmet bacon cheeseburger",
     price: "8,500",

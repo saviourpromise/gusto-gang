@@ -2,6 +2,10 @@ import Image from "next/image";
 import { SectionDivider } from "@/components/ui/SectionDivider";
 
 // node-id 84:31410 — see .figma-cache/design-context/84-31410-most-ordered.tsx
+// Photo verified against the Figma REST API's full-resolution original (imageRef 29594239...,
+// same file as the Menu/Deals/About newsletter background) — 408x612 IS the source's native
+// resolution, not an MCP export artifact. It's displayed here at ~1189x949 per the Figma layout
+// itself, so the softness is inherent to the design file, not something this build introduced.
 export function MostOrdered() {
   return (
     <section className="bg-brand-amber-dark relative">

@@ -1,20 +1,19 @@
 import Image from "next/image";
-import { AssetPending } from "@/components/ui/AssetPending";
 
 const STEPS = [
   { number: 1, title: "Pick your food", image: "/images/how-it-works/step-1.png" },
-  { number: 2, title: "Pick your food", image: null },
-  { number: 3, title: "Pick your food", image: null },
-  { number: 4, title: "Pick your food", image: null },
+  { number: 2, title: "Pick your food", image: "/images/how-it-works/step-2.png" },
+  { number: 3, title: "Pick your food", image: "/images/how-it-works/step-3.png" },
+  { number: 4, title: "Pick your food", image: "/images/how-it-works/step-4.png" },
 ] as const;
 
 const DESCRIPTION = "Browse by mood. Filter by category. Add what you want.";
 
-// node-id 84:31291 (step 1, exact) — see .figma-cache/design-context/84-31291-how-it-works-step.tsx
+// node-id 84:31291 (step 1 styling, exact) — see .figma-cache/design-context/84-31291-how-it-works-step.tsx
+// Photos for all 4 steps sourced via the Figma REST API's /images endpoint (full-resolution originals,
+// resolved through file.json's imageRef mapping — see .figma-cache/rest/).
 // CONFIRMED in Figma metadata: all 4 steps share this identical title/description (literal design
 // content, not a bug — see cache file note). Only the number and photo differ per step.
-// Steps 2–4 photos were not pulled (out of this budget's scope) — rendered as AssetPending rather
-// than reusing step 1's photo or any stock image.
 export function HowItWorks() {
   return (
     <section className="bg-cream px-6 py-[127px]">
@@ -47,20 +46,12 @@ export function HowItWorks() {
                   <p className="font-display text-[20px]">{DESCRIPTION}</p>
                 </div>
                 <div className="rounded-card-sm absolute top-[231px] left-1/2 h-[264px] w-[316px] -translate-x-1/2 overflow-hidden bg-[#292d32]">
-                  {step.image ? (
-                    <Image
-                      src={step.image}
-                      alt={step.title}
-                      width={316}
-                      height={264}
-                      className="h-full w-full object-cover"
-                    />
-                  ) : (
-                    <AssetPending
-                      label={`How It Works step ${step.number} photo`}
-                      className="h-full w-full"
-                    />
-                  )}
+                  <Image
+                    src={step.image}
+                    alt={step.title}
+                    fill
+                    className="object-cover"
+                  />
                 </div>
               </div>
             </div>
