@@ -1,5 +1,6 @@
 import { Footer } from "@/components/layout/Footer";
 import { NewsletterSection } from "@/components/layout/NewsletterSection";
+import { PhotoCollage } from "@/components/layout/PhotoCollage";
 import { CtaBanner } from "@/components/sections/home/CtaBanner";
 import { GoodFoodHero } from "@/components/sections/home/GoodFoodHero";
 import { HomeHero } from "@/components/sections/home/HomeHero";
@@ -35,6 +36,7 @@ export default function Home() {
           }}
         />
       </Reveal>
+      <PhotoCollage />
       <Footer />
     </>
   );
