@@ -27,7 +27,7 @@ const args = Object.fromEntries(
 
 const width = Number(args.width ?? 1440);
 const height = Number(args.height ?? 900);
-const fullPage = Boolean(args.full ?? true);
+const fullPage = args.full === undefined ? true : args.full !== "false";
 const baseUrl = process.env.SCREENSHOT_BASE_URL ?? "http://localhost:3001";
 const outDir = path.resolve(process.cwd(), ".screenshots");
 const outName =

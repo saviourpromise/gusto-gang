@@ -15,4 +15,9 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-body);
+  /* Safety net: several sections use design-exact fixed pixel widths/positions (ported straight
+     from the 1440px-only Figma file) that aren't all individually responsive yet. This stops any
+     one of them from ever producing a page-level horizontal scrollbar; see styles/tokens.css and
+     the responsive notes in each component for the real per-component fixes. */
+  overflow-x: hidden;
 }

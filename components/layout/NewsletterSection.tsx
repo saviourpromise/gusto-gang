@@ -11,12 +11,15 @@ type NewsletterSectionProps = {
 export function NewsletterSection({ photo }: NewsletterSectionProps) {
   return (
     <section className="bg-brand-amber-dark flex flex-col md:flex-row">
-      <div className="relative flex-1 px-[61px] py-[100px] md:py-[135px]">
-        <p className="font-display text-[52.5px] leading-[52.9px] font-bold tracking-[-0.56px] text-[#402011] uppercase">
+      <div className="relative flex-1 px-[24px] py-[60px] sm:px-[61px] sm:py-[100px] md:py-[135px]">
+        <p
+          className="font-display font-bold tracking-[-0.56px] text-[#402011] uppercase"
+          style={{ fontSize: "clamp(32px, 6.5vw, 52.5px)", lineHeight: 1.01 }}
+        >
           Hot, fresh, at your door in under 30 minutes. Or pick it up free — your call.
         </p>
 
-        <form className="mt-[150px] flex flex-wrap gap-[20px]">
+        <form className="mt-[60px] flex flex-wrap gap-[20px] sm:mt-[150px]">
           <div className="rounded-pill flex-1 border border-[rgba(64,32,17,0.35)] px-[40px] py-[12px]">
             <input
               type="text"
@@ -24,7 +27,7 @@ export function NewsletterSection({ photo }: NewsletterSectionProps) {
               className="font-body w-full bg-transparent text-[18px] tracking-[0.08px] text-[#402011] uppercase placeholder:text-[#402011] focus:outline-none"
             />
           </div>
-          <div className="rounded-pill min-w-[276px] border border-[rgba(64,32,17,0.35)] px-[25px] py-[12px] text-center">
+          <div className="rounded-pill w-full border border-[rgba(64,32,17,0.35)] px-[25px] py-[12px] text-center md:min-w-[276px] md:w-auto md:flex-1">
             <input
               type="email"
               placeholder="Enter your E-MAIL"

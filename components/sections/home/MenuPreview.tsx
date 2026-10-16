@@ -51,7 +51,7 @@ export function MenuPreview() {
         </p>
       </div>
 
-      <div className="flex w-full max-w-[1566px] items-start justify-center gap-[40px] overflow-x-auto">
+      <div className="flex w-full min-w-0 max-w-[1566px] items-start justify-center gap-[40px] overflow-x-auto">
         {CARDS.map((card) => (
           <article
             key={card.name}
