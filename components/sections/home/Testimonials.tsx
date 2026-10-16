@@ -6,20 +6,27 @@ import Image from "next/image";
 // content for. Only the first (matching the visible slide in the Figma screenshot) is used here.
 // Carousel dots' exact styling wasn't available — approximated (active = solid, inactive = faint).
 // Heading spelling "TESTIMONIOALS" is literal Figma content (typo kept, not corrected) — see 84:31257.
+//
+// Responsive note: the quote card's p-[64px] and the 40px quote text were fixed — not a clipping
+// bug here (the card has no fixed height, so it just grows), but 64px padding on a narrow card
+// left very little room for text and looked cramped. Padding and the quote/heading sizes now
+// scale down below `sm`.
 export function Testimonials() {
   return (
-    <section className="bg-cream px-6 py-[102px]">
+    <section className="bg-cream px-6 py-[60px] sm:py-[102px]">
       <div className="mx-auto max-w-[1351px]">
-        <p className="font-display text-ink mb-[53px] text-[75px] uppercase">Testimonioals</p>
+        <p className="font-display text-ink mb-[32px] text-[clamp(40px,8vw,75px)] uppercase sm:mb-[53px]">
+          Testimonioals
+        </p>
 
         <div className="flex flex-col items-start gap-10 lg:flex-row">
-          <div className="w-full max-w-[640px] rounded-[10px] border-4 border-black bg-[#fdf3e4] p-[64px] shadow-[8px_0px_0px_0px_black]">
+          <div className="w-full max-w-[640px] rounded-[10px] border-4 border-black bg-[#fdf3e4] p-[28px] shadow-[8px_0px_0px_0px_black] sm:p-[64px]">
             <div className="rotate-[-4.54deg]">
               <span className="bg-peach-tag text-maroon-tag font-display inline-block px-[15px] py-[6px] text-[24px] uppercase">
                 Sandra M. - Lagos, NG
               </span>
             </div>
-            <p className="font-display text-maroon-quote mt-[30px] text-[40px] leading-[1.1] uppercase">
+            <p className="font-display text-maroon-quote mt-[30px] text-[clamp(24px,5vw,40px)] leading-[1.1] uppercase">
               &ldquo;The food is absolutely amazing, and the energy here is completely unmatched.
               Gusto Gang always delivers on its promise of bold tastes and better vibes!&rdquo;
             </p>
@@ -39,7 +46,7 @@ export function Testimonials() {
             </div>
           </div>
 
-          <div className="relative h-[600px] w-full max-w-[824px] overflow-hidden rounded-[10px]">
+          <div className="relative h-[320px] w-full max-w-[824px] overflow-hidden rounded-[10px] sm:h-[600px]">
             <Image
               src="/images/testimonials/testimonials-bg.jpg"
               alt="Gusto Gang team member packaging a food delivery order"
