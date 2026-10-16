@@ -1,0 +1,83 @@
+/**
+ * Design tokens extracted from Figma (file Z2uzGSgHy6p7VijUhCw2ih, canvas "Gusto Gang").
+ * No Figma Variables exist in the source file — every value here was hand-extracted from
+ * get_design_context pulls on real layers (see .figma-cache/design-context/). Values are
+ * added to this file as each section of the site is built; nothing is hardcoded in components.
+ *
+ * Font swap note: --font-display currently points at Bricolage Grotesque (free stand-in for the
+ * paid "Di Grotesk" used in the design). To swap in real Di Grotesk later, change ONLY the
+ * `--font-display` assignment below (and the next/font/local setup in app/layout.tsx) — nothing
+ * else in the codebase references a font name directly.
+ */
+
+:root {
+  /* ---- Brand colors (literal values from Figma, kept exact — including the pure #0f0 green) ---- */
+  --color-brand-red: #ff0000;
+  --color-brand-green: #0f0;
+  --color-brand-amber: #ffb700;
+  --color-brand-amber-dark: #faae33;
+
+  /* ---- Neutrals ---- */
+  --color-ink: #292d32; /* primary heading/body text */
+  --color-ink-soft: #55595d; /* secondary/subtext gray */
+  --color-ink-button: #1a1a1a; /* button label text on amber/green/white pills */
+  --color-cream: #fff5d1; /* About page section background */
+  --color-sand: #ede6dd; /* menu card image plate background */
+
+  /* ---- Footer / newsletter browns ---- */
+  --color-brown-900: #281006; /* footer background */
+  --color-brown-800: #402011; /* newsletter heading text / subscribe button bg */
+
+  /* ---- Accent palette (cards, badges, decorative) ---- */
+  --color-mint: #c2f4e4; /* deal card: Best Sellers Combo */
+  --color-peach-tag: #fae1c5; /* testimonial name tag background */
+  --color-maroon-tag: #520b00; /* testimonial name tag text */
+  --color-maroon-quote: #2e0800; /* testimonial quote text */
+  --color-coral: #fc561c; /* zigzag divider bars (testimonials, how-it-works) */
+  --color-amber-card: #eca037; /* How It Works step card background */
+  --color-hero-gradient-end: #df7400; /* home hero photo card gradient end */
+
+  /* ---- Radii ---- */
+  --radius-pill: 100px; /* buttons */
+  --radius-card: 20px; /* deal cards */
+  --radius-card-sm: 15px; /* how-it-works card, photo chip */
+  --radius-stamp: 10px; /* "stamp card" (About hero, CTA banner) */
+
+  /* ---- Hard-shadow offsets (Figma's drop-shadow is a flat offset, no blur) ---- */
+  --shadow-pill: 4px 0px 0px 0px black;
+  --shadow-stamp: 10px 0px 0px 0px black;
+  --shadow-hero-card: 4px 4px 0px 0px black; /* two-axis, distinct from the pill/stamp one-axis shadows */
+}
+
+@theme inline {
+  --font-display: "Bricolage Grotesque", var(--font-bricolage-grotesque), system-ui, sans-serif;
+  --font-body: "Plus Jakarta Sans", var(--font-plus-jakarta-sans), system-ui, sans-serif;
+
+  --color-brand-red: var(--color-brand-red);
+  --color-brand-green: var(--color-brand-green);
+  --color-brand-amber: var(--color-brand-amber);
+  --color-brand-amber-dark: var(--color-brand-amber-dark);
+  --color-ink: var(--color-ink);
+  --color-ink-soft: var(--color-ink-soft);
+  --color-ink-button: var(--color-ink-button);
+  --color-cream: var(--color-cream);
+  --color-sand: var(--color-sand);
+  --color-brown-900: var(--color-brown-900);
+  --color-brown-800: var(--color-brown-800);
+  --color-mint: var(--color-mint);
+  --color-peach-tag: var(--color-peach-tag);
+  --color-maroon-tag: var(--color-maroon-tag);
+  --color-maroon-quote: var(--color-maroon-quote);
+  --color-coral: var(--color-coral);
+  --color-amber-card: var(--color-amber-card);
+  --color-hero-gradient-end: var(--color-hero-gradient-end);
+
+  --radius-pill: var(--radius-pill);
+  --radius-card: var(--radius-card);
+  --radius-card-sm: var(--radius-card-sm);
+  --radius-stamp: var(--radius-stamp);
+
+  --shadow-pill: var(--shadow-pill);
+  --shadow-stamp: var(--shadow-stamp);
+  --shadow-hero-card: var(--shadow-hero-card);
+}

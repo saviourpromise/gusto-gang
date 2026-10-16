@@ -12,6 +12,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Raw reference snippets pulled from Figma MCP, not app code.
+    ".figma-cache/**",
   ]),
 ]);
 
