@@ -74,7 +74,7 @@ const ITEMS: MenuItem[] = [
 
 export function MenuGrid() {
   return (
-    <div className="mx-auto grid max-w-[1320px] grid-cols-1 gap-x-[41px] gap-y-[62px] px-6 sm:grid-cols-2 lg:grid-cols-3">
+    <div className="mx-auto grid w-full max-w-[1320px] grid-cols-1 gap-x-[41px] gap-y-[62px] px-6 sm:grid-cols-2 lg:grid-cols-3">
       {ITEMS.map((item, i) => (
         <article key={i} className="flex flex-col items-center gap-[35px]">
           <div

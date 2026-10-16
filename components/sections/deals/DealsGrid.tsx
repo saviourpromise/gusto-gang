@@ -88,7 +88,7 @@ const DEALS: DealCardData[] = [
 
 export function DealsGrid() {
   return (
-    <div className="mx-auto grid max-w-[1319px] grid-cols-1 gap-[33px] px-6 md:grid-cols-2">
+    <div className="mx-auto grid w-full max-w-[1319px] grid-cols-1 gap-[33px] px-6 md:grid-cols-2">
       {DEALS.map((deal) => (
         <DealCard key={deal.title} data={deal} />
       ))}

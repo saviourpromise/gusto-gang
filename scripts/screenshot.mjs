@@ -46,56 +46,72 @@ await mkdir(outDir, { recursive: true });
 // Pass --motion to opt out and scroll through normally to see the animations as a sighted user would.
 const respectReducedMotion = !args.motion;
 
+// page.evaluate() has no timeout of its own — if the in-page promise it's awaiting never
+// resolves, it hangs Node forever. Every evaluate() below that waits on something (scroll
+// settling, image loads) is raced against this so a single stuck case can't hang the script;
+// seen hanging one run 4+ minutes with zero further dev-server activity before this was added.
+function withTimeout(promise, ms) {
+  return Promise.race([promise, new Promise((resolve) => setTimeout(resolve, ms))]);
+}
+
 const browser = await chromium.launch({ channel: "chrome" });
-const page = await browser.newPage({
-  viewport: { width, height },
-  reducedMotion: respectReducedMotion ? "reduce" : "no-preference",
-});
-await page.goto(`${baseUrl}${routeArg}`, { waitUntil: "networkidle" });
-// Give React a tick to hydrate and the Reveal components to resolve their reduced-motion check.
-await page.waitForTimeout(300);
+try {
+  const page = await browser.newPage({
+    viewport: { width, height },
+    reducedMotion: respectReducedMotion ? "reduce" : "no-preference",
+  });
+  await page.goto(`${baseUrl}${routeArg}`, { waitUntil: "networkidle" });
+  // Give React a tick to hydrate and the Reveal components to resolve their reduced-motion check.
+  await page.waitForTimeout(300);
 
-// Always scroll through incrementally — next/image uses native lazy-loading, so images below
-// the fold never fetch their src at all without an actual scroll past them (fullPage screenshots
-// capture whatever's currently loaded, not a magically-complete page). When not respecting
-// reduced motion we also need this for whileInView reveals to fire; when we are, Reveal is
-// already bypassed, so this pass can move faster.
-await page.evaluate(
-  async (perStepWaitMs) => {
-    const step = Math.max(200, window.innerHeight * 0.5);
-    let y = 0;
-    const max = document.body.scrollHeight;
-    while (y < max) {
-      window.scrollTo(0, y);
-      await new Promise((r) => setTimeout(r, perStepWaitMs));
-      y += step;
-    }
-    window.scrollTo(0, max);
-    await new Promise((r) => setTimeout(r, 300));
-    window.scrollTo(0, 0);
-    await new Promise((r) => setTimeout(r, 300));
-  },
-  respectReducedMotion ? 40 : 120,
-);
-
-// Wait for every <img> to finish loading before capturing.
-await page.evaluate(async () => {
-  const imgs = Array.from(document.images);
-  await Promise.all(
-    imgs
-      .filter((img) => !img.complete)
-      .map(
-        (img) =>
-          new Promise((resolve) => {
-            img.addEventListener("load", resolve, { once: true });
-            img.addEventListener("error", resolve, { once: true });
-          }),
-      ),
+  // Always scroll through incrementally — next/image uses native lazy-loading, so images below
+  // the fold never fetch their src at all without an actual scroll past them (fullPage
+  // screenshots capture whatever's currently loaded, not a magically-complete page). When not
+  // respecting reduced motion we also need this for whileInView reveals to fire; when we are,
+  // Reveal is already bypassed, so this pass can move faster.
+  await withTimeout(
+    page.evaluate(
+      async (perStepWaitMs) => {
+        const step = Math.max(200, window.innerHeight * 0.5);
+        let y = 0;
+        const max = document.body.scrollHeight;
+        while (y < max) {
+          window.scrollTo(0, y);
+          await new Promise((r) => setTimeout(r, perStepWaitMs));
+          y += step;
+        }
+        window.scrollTo(0, max);
+        await new Promise((r) => setTimeout(r, 300));
+        window.scrollTo(0, 0);
+        await new Promise((r) => setTimeout(r, 300));
+      },
+      respectReducedMotion ? 40 : 120,
+    ),
+    15000,
   );
-});
 
-const outPath = path.join(outDir, outName);
-await page.screenshot({ path: outPath, fullPage });
-await browser.close();
+  // Wait for every <img> to finish loading before capturing.
+  await withTimeout(
+    page.evaluate(async () => {
+      const imgs = Array.from(document.images);
+      await Promise.all(
+        imgs
+          .filter((img) => !img.complete)
+          .map(
+            (img) =>
+              new Promise((resolve) => {
+                img.addEventListener("load", resolve, { once: true });
+                img.addEventListener("error", resolve, { once: true });
+              }),
+          ),
+      );
+    }),
+    8000,
+  );
 
-console.log(outPath);
+  const outPath = path.join(outDir, outName);
+  await page.screenshot({ path: outPath, fullPage });
+  console.log(outPath);
+} finally {
+  await browser.close();
+}
