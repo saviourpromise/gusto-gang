@@ -35,7 +35,7 @@ export function AboutHero() {
           className="font-display text-ink text-center font-extrabold uppercase"
           style={{ fontSize: "clamp(32px, 10.5vw, 120px)", lineHeight: 0.96 }}
         >
-          The Gusto Story
+          The <br /> Gusto <br /> Story
         </p>
       </div>
     </section>
