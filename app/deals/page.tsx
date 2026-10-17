@@ -28,8 +28,8 @@ export default function DealsPage() {
           }}
         />
       </Reveal>
-      <PhotoCollage />
       <Footer />
+      <PhotoCollage />
     </>
   );
 }

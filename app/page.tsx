@@ -36,8 +36,8 @@ export default function Home() {
           }}
         />
       </Reveal>
-      <PhotoCollage />
       <Footer />
+      <PhotoCollage />
     </>
   );
 }

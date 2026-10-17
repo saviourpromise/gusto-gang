@@ -14,6 +14,11 @@ const DESCRIPTION = "Browse by mood. Filter by category. Add what you want.";
 // resolved through file.json's imageRef mapping — see .figma-cache/rest/).
 // CONFIRMED in Figma metadata: all 4 steps share this identical title/description (literal design
 // content, not a bug — see cache file note). Only the number and photo differ per step.
+//
+// Zigzag bar above each card uses the orange-steps.png asset (public/images/home/) rather than
+// a CSS approximation — the earlier version used separated/gapped rectangles, but the real shape
+// is a connected overlapping staircase (confirmed against a reference screenshot); the asset
+// reproduces that exactly at its native 250x32 size (matches the Figma layout's own 250x31.8).
 export function HowItWorks() {
   return (
     <section className="bg-cream px-6 py-[127px]">
@@ -28,15 +33,14 @@ export function HowItWorks() {
         <div className="mt-[80px] grid grid-cols-1 gap-x-[18px] gap-y-[40px] sm:grid-cols-2 lg:grid-cols-4">
           {STEPS.map((step) => (
             <div key={step.number} className="flex w-[316px] max-w-full flex-col items-center">
-              {/* zigzag divider bar, coral, sits above the card */}
-              <div className="mb-[12px] flex h-[16px] w-[250px] gap-[9px]" aria-hidden>
-                {Array.from({ length: 5 }).map((_, i) => (
-                  <span
-                    key={i}
-                    className={`bg-coral h-[16px] w-[57px] rounded-[1.3px] ${i % 2 ? "translate-y-[16px]" : ""}`}
-                  />
-                ))}
-              </div>
+              <Image
+                src="/images/home/orange-steps.png"
+                alt=""
+                aria-hidden
+                width={250}
+                height={32}
+                className="mb-[12px] h-auto w-[250px] max-w-full"
+              />
               <div className="bg-amber-card relative h-[495px] w-full overflow-hidden rounded-card-sm">
                 <p className="font-display absolute top-0 left-1/2 -translate-x-1/2 text-[64px] font-extrabold text-black">
                   {step.number}

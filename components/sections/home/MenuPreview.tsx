@@ -1,4 +1,7 @@
+"use client";
+
 import Image from "next/image";
+import { useRef } from "react";
 
 type PreviewCard = {
   image: string;
@@ -40,6 +43,16 @@ const CARDS: PreviewCard[] = [
 
 // node-id 84:31182 — see .figma-cache/design-context/84-31182-home-menu-preview.tsx
 export function MenuPreview() {
+  const rowRef = useRef<HTMLDivElement>(null);
+
+  function scrollByCard(direction: 1 | -1) {
+    const row = rowRef.current;
+    if (!row) return;
+    const card = row.querySelector("article");
+    const cardWidth = card?.getBoundingClientRect().width ?? row.clientWidth;
+    row.scrollBy({ left: direction * (cardWidth + 40), behavior: "smooth" });
+  }
+
   return (
     <section className="flex flex-col items-center gap-[55px] bg-cream px-6 py-[79px]">
       <div className="flex w-[677px] max-w-full flex-col items-center gap-[12px] text-center">
@@ -51,11 +64,14 @@ export function MenuPreview() {
         </p>
       </div>
 
-      <div className="flex w-full min-w-0 max-w-[1566px] items-start justify-center gap-[40px] overflow-x-auto">
+      <div
+        ref={rowRef}
+        className="scroll-smooth flex w-full min-w-0 max-w-[1566px] items-start justify-start gap-[40px] overflow-x-auto scroll-px-6 snap-x snap-mandatory sm:justify-center"
+      >
         {CARDS.map((card) => (
           <article
             key={card.name}
-            className="flex w-[467px] max-w-[85vw] shrink-0 flex-col items-center gap-[40px]"
+            className="flex w-[467px] max-w-[85vw] shrink-0 snap-start flex-col items-center gap-[40px]"
           >
             <div
               className={`relative h-[498px] w-full overflow-hidden border-4 border-black bg-sand ${card.shadow}`}
@@ -95,18 +111,22 @@ export function MenuPreview() {
         ))}
       </div>
 
-      {/* Visual-only carousel controls — design shows no additional items beyond these 3. */}
+      {/* Smoothly scrolls the row by one card per click. The design shows no additional items
+          beyond these 3 (same 3 that appear on the dedicated /menu page), so "sliding" here means
+          snapping between them, not loading new content. */}
       <div className="flex items-center gap-[14px]">
         <button
           type="button"
-          aria-label="Previous"
+          aria-label="Previous dish"
+          onClick={() => scrollByCard(-1)}
           className="shadow-pill bg-brand-amber flex size-[48px] rotate-180 items-center justify-center rounded-pill border-2 border-black"
         >
           <Image src="/icons/arrow.svg" alt="" width={24} height={20} aria-hidden />
         </button>
         <button
           type="button"
-          aria-label="Next"
+          aria-label="Next dish"
+          onClick={() => scrollByCard(1)}
           className="shadow-pill bg-brand-amber flex size-[48px] items-center justify-center rounded-pill border-2 border-black"
         >
           <Image src="/icons/arrow.svg" alt="" width={24} height={20} aria-hidden />

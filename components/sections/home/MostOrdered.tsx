@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { SectionDivider } from "@/components/ui/SectionDivider";
+import { WaveDivider } from "@/components/ui/WaveDivider";
 
 // node-id 84:31410 — see .figma-cache/design-context/84-31410-most-ordered.tsx
 // Photo verified against the Figma REST API's full-resolution original (imageRef 29594239...,
@@ -12,10 +12,13 @@ import { SectionDivider } from "@/components/ui/SectionDivider";
 // overflowing under 1263px, with an explicit aspect-ratio standing in for the old fixed height.
 export function MostOrdered() {
   return (
-    <section className="bg-brand-amber-dark relative overflow-hidden">
-      <SectionDivider />
+    <section className="bg-brand-amber-dark relative">
+      <WaveDivider color="var(--color-brand-amber-dark)" edge="top" />
       <div className="flex flex-col items-center gap-[22px] px-6 py-[79px]">
-        <p className="font-display max-w-[651px] text-center text-[96px] leading-[87px] font-extrabold text-[#292d32] uppercase">
+        <p
+          className="font-display max-w-[651px] text-center font-extrabold text-[#292d32] uppercase"
+          style={{ fontSize: "clamp(36px, 8vw, 96px)", lineHeight: 0.91 }}
+        >
           Most Ordered Right Now
         </p>
         <div className="shadow-pill rounded-pill border-2 border-black bg-white p-[15px]">
@@ -52,7 +55,7 @@ export function MostOrdered() {
           </p>
         </div>
       </div>
-      <SectionDivider flip />
+      <WaveDivider color="var(--color-brand-amber-dark)" edge="bottom" />
     </section>
   );
 }

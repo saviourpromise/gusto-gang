@@ -1,5 +1,6 @@
 import Image from "next/image";
 import type { CSSProperties } from "react";
+import { WaveDivider } from "@/components/ui/WaveDivider";
 
 const PHOTOS = [
   { src: "/images/shared/collage-1.png", offset: 17, ratio: 301 / 244 },
@@ -16,11 +17,19 @@ const PHOTOS = [
  * Below 1440 each photo instead gets an equal flex share of the row (aspect-ratio preserved,
  * no fixed px) so the whole strip scales down smoothly instead of overflowing; the small
  * per-photo vertical offset is dropped under 640px since it reads as visual noise once the
- * photos are this small rather than the subtle "scattered" effect it is at full size. */
+ * photos are this small rather than the subtle "scattered" effect it is at full size.
+ *
+ * Renders AFTER the Footer in page order (confirmed against a reference screenshot — this was
+ * previously placed before the Footer, which was backwards), with a cream wave at its own top
+ * edge bumping up into the Footer's brown background above it. */
 export function PhotoCollage() {
   return (
-    <div className="bg-cream overflow-hidden" aria-hidden>
-      <div className="mx-auto flex max-w-[1440px] items-center justify-center gap-[12px] px-[16px] py-[24px] sm:gap-[25px] sm:px-[30px] sm:py-[40px]">
+    <div className="bg-cream relative">
+      <WaveDivider color="var(--color-cream)" edge="top" />
+      <div
+        aria-hidden
+        className="mx-auto flex max-w-[1440px] items-center justify-center gap-[12px] overflow-hidden px-[16px] py-[24px] sm:gap-[25px] sm:px-[30px] sm:py-[40px]"
+      >
         {PHOTOS.map((photo, i) => (
           <div
             key={i}

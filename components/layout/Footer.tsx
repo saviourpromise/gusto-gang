@@ -16,12 +16,15 @@ import { FOOTER_COLUMNS, SITE_ADDRESS, SITE_EMAIL } from "@/lib/site";
 // one rigid row, huge fixed vertical gaps calibrated to the wordmark's size). Below 1440 the
 // wordmark scales down with clamp() and the link columns + address wrap onto their own rows
 // instead of overflowing off-canvas; the big gaps scale down proportionally with it.
+//
+// Correction: the wordmark is LEFT-aligned in the actual Figma render, not centered — fixed
+// against a reference screenshot (text-center was a build-time assumption, not Figma data).
 export function Footer() {
   return (
     <footer className="bg-brown-900">
       <div className="mx-auto max-w-[1440px] px-[24px] pt-[48px] pb-[30px] sm:px-[60px] sm:pt-[67px]">
         <p
-          className="font-display text-brand-amber-dark text-center leading-none font-black uppercase"
+          className="font-display text-brand-amber-dark text-left leading-none font-black uppercase"
           style={{ fontSize: "clamp(52px, 13vw, 200px)" }}
         >
           Gusto Gang

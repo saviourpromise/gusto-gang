@@ -28,8 +28,8 @@ export default function MenuPage() {
           }}
         />
       </Reveal>
-      <PhotoCollage />
       <Footer />
+      <PhotoCollage />
     </>
   );
 }
