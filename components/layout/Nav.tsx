@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { Button } from "@/components/ui/Button";
+import { ZigzagDivider } from "@/components/ui/ZigzagDivider";
 import { PRIMARY_NAV } from "@/lib/site";
 
 type NavProps = {
@@ -28,7 +29,7 @@ export function Nav({ variant = "light" }: NavProps) {
   const linkColorClass = isOverlay ? "font-body font-medium text-white" : "font-display text-ink";
 
   return (
-    <header className={isOverlay ? "bg-brand-red relative" : "bg-white relative"}>
+    <header className={isOverlay ? "bg-brand-red relative z-30" : "bg-white relative z-30"}>
       <div className="mx-auto flex max-w-[1440px] items-center justify-between px-6 py-[20px] lg:py-[47px] lg:pr-[65px] lg:pl-[62px]">
         <div className={isOverlay ? "flex items-center gap-6" : "flex items-center gap-8"}>
           <Link href="/" aria-label="Gusto Gang home" className="shrink-0">
@@ -98,7 +99,7 @@ export function Nav({ variant = "light" }: NavProps) {
 
       {open && (
         <div
-          className={`absolute inset-x-0 top-full z-20 flex flex-col gap-4 px-6 py-6 shadow-lg lg:hidden ${isOverlay ? "bg-brand-red" : "bg-white"}`}
+          className={`absolute inset-x-0 top-full z-40 flex flex-col gap-4 px-6 py-6 shadow-lg lg:hidden ${isOverlay ? "bg-brand-red" : "bg-white"}`}
         >
           {PRIMARY_NAV.map((link) => (
             <Link
@@ -122,6 +123,8 @@ export function Nav({ variant = "light" }: NavProps) {
           </span>
         </div>
       )}
+
+      <ZigzagDivider color={isOverlay ? "var(--color-brand-red)" : "#ffffff"} edge="bottom" />
     </header>
   );
 }

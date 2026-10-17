@@ -23,12 +23,7 @@ export default function AboutPage() {
         <OurStory />
       </Reveal>
       <Reveal>
-        <NewsletterSection
-          photo={{
-            src: "/images/about/newsletter-about.png",
-            alt: "Bowl of shrimp lo mein noodles",
-          }}
-        />
+        <NewsletterSection />
       </Reveal>
       <Footer />
       <PhotoCollage />

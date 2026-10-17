@@ -21,7 +21,7 @@ const DESCRIPTION = "Browse by mood. Filter by category. Add what you want.";
 // reproduces that exactly at its native 250x32 size (matches the Figma layout's own 250x31.8).
 export function HowItWorks() {
   return (
-    <section className="bg-cream px-6 py-[127px]">
+    <section className="bg-cream relative z-10 px-6 py-[127px]">
       <div className="mx-auto flex max-w-[1318px] flex-col items-center">
         <div className="flex w-[677px] max-w-full flex-col items-center gap-[12px] text-center">
           <p className="font-display text-ink text-[64px] leading-[87px] font-extrabold uppercase">

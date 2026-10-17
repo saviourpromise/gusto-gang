@@ -15,7 +15,7 @@ import Image from "next/image";
 //   instead of a CSS approximation, matching the corrected How It Works bar for consistency.
 export function Testimonials() {
   return (
-    <section className="bg-cream overflow-x-hidden px-6 py-[60px] sm:py-[102px]">
+    <section className="bg-[#FAE1C5] relative z-10 px-6 py-[60px] sm:py-[102px]">
       <div className="mx-auto max-w-[1351px]">
         <p
           className="font-display mb-[40px] text-[#520b00] uppercase underline decoration-from-font sm:mb-[73px]"
@@ -26,7 +26,7 @@ export function Testimonials() {
 
         <div className="relative flex flex-col items-center gap-16 lg:h-[975px] lg:flex-row lg:items-start lg:gap-0">
           <div
-            className="w-full max-w-[500px] shrink-0 bg-[#fef2e1] p-[28px] shadow-[8px_0px_0px_0px_black] sm:p-[50px] lg:rotate-[-8.66deg] lg:self-center"
+            className="w-full lg:ml-26 max-w-[500px] shrink-0 bg-[#fef2e1] p-[28px] shadow-[8px_0px_0px_0px_black] sm:p-[50px] lg:rotate-[-8.66deg] lg:self-center"
             style={{ aspectRatio: "600 / 825.843" }}
           >
             <div className="rotate-[-4.54deg]">
@@ -56,7 +56,7 @@ export function Testimonials() {
           </div>
 
           <div
-            className="relative w-full max-w-[450px] shrink-0 overflow-hidden lg:absolute lg:top-0 lg:right-0 lg:w-[44.4%] lg:max-w-none lg:rotate-[17.81deg]"
+            className="relative w-full max-w-[450px] shrink-0 overflow-hidden lg:absolute lg:top-20 lg:right-26 lg:w-[44.4%] lg:max-w-none lg:rotate-[17.81deg]"
             style={{ aspectRatio: "600 / 825.843" }}
           >
             <Image

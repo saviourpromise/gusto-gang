@@ -11,18 +11,20 @@ import Image from "next/image";
 // whatever the wrapped text needs, and the heading uses clamp() instead of a flat 96px.
 export function OurStory() {
   return (
-    <section className="relative flex min-h-[600px] flex-col justify-center overflow-hidden bg-[#402011] px-[24px] py-[80px] sm:min-h-[1109px] sm:px-[65px] sm:py-[120px]">
-      <div
-        className="pointer-events-none absolute flex items-center justify-center"
-        style={{ left: 855, top: -208, width: 1081, height: 1069 }}
-      >
-        <Image
-          src="/images/about/our-story-bg.png"
-          alt=""
-          fill
-          aria-hidden
-          className="scale-y-[-1] rotate-[158.59deg] object-cover"
-        />
+    <section className="relative z-10 flex min-h-[600px] flex-col justify-center bg-[#402011] px-[24px] py-[80px] sm:min-h-[1109px] sm:px-[65px] sm:py-[120px]">
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        <div
+          className="pointer-events-none absolute flex items-center justify-center"
+          style={{ left: 855, top: -208, width: 1081, height: 1069 }}
+        >
+          <Image
+            src="/images/about/our-story-bg.png"
+            alt=""
+            fill
+            aria-hidden
+            className="scale-y-[-1] rotate-[158.59deg] object-cover"
+          />
+        </div>
       </div>
 
       <div className="relative flex w-[850px] max-w-full flex-col items-start gap-[43px] text-white capitalize">

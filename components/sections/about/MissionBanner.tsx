@@ -4,13 +4,17 @@
 // Text is exact (Figma text-node name = content, from cached metadata). Styling is INFERRED from the
 // matching pattern used for other single-statement banners on this site (Di Grotesk Extra Bold,
 // uppercase, centered, #292d32 on an amber background) — flagged as an estimate, not fetched data.
+import { ZigzagDivider } from "@/components/ui/ZigzagDivider";
+
 export function MissionBanner() {
   return (
-    <div className="bg-brand-amber-dark flex items-center justify-center px-6 py-[150px]">
+    <div className="bg-brand-amber-dark relative z-20 flex items-center justify-center px-6 py-[150px]">
+      <ZigzagDivider color="var(--color-brand-amber-dark)" edge="top" />
       <p className="font-display text-ink max-w-[1180px] text-center text-[48px] leading-[1.25] font-extrabold uppercase">
         We specialize in crafting fresh, flavourful meals that satisfy cravings and turn everyday
         dining into a memorable experience.
       </p>
+      <ZigzagDivider color="var(--color-brand-amber-dark)" edge="bottom" />
     </div>
   );
 }

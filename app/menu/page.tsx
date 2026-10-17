@@ -16,17 +16,12 @@ export default function MenuPage() {
   return (
     <>
       <Nav />
-      <section className="bg-cream flex flex-col gap-[80px] py-[79px]">
+      <section className="bg-cream relative z-10 flex flex-col gap-[80px] py-[79px]">
         <MenuHeader />
         <MenuGrid />
       </section>
       <Reveal>
-        <NewsletterSection
-          photo={{
-            src: "/images/menu/newsletter-menu.png",
-            alt: "Bowl of shrimp lo mein noodles",
-          }}
-        />
+        <NewsletterSection />
       </Reveal>
       <Footer />
       <PhotoCollage />

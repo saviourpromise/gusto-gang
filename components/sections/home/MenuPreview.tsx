@@ -54,7 +54,7 @@ export function MenuPreview() {
   }
 
   return (
-    <section className="flex flex-col items-center gap-[55px] bg-cream px-6 py-[79px]">
+    <section className="relative z-10 flex flex-col items-center gap-[55px] bg-cream px-6 py-[79px]">
       <div className="flex w-[677px] max-w-full flex-col items-center gap-[12px] text-center">
         <p className="font-body text-ink text-[64px] leading-[113px] font-extrabold uppercase">
           Our Menu

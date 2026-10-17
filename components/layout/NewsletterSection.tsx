@@ -1,50 +1,68 @@
 import Image from "next/image";
-import { AssetPending } from "@/components/ui/AssetPending";
-import { WaveDivider } from "@/components/ui/WaveDivider";
+import { ZigzagDivider } from "@/components/ui/ZigzagDivider";
 
 type NewsletterSectionProps = {
-  /** Right-side food photo — differs per page (image 1641 reused on Menu/Deals/About, image 1664 on
-   * Home). Pass the exported path once available; omitted pages show an honest pending placeholder. */
+  /** Optional custom photo — defaults to the signature grilled fish & bole platter matching Figma */
   photo?: { src: string; alt: string };
 };
 
-// node-id 84:30862 (left text+form, exact) — see .figma-cache/design-context/84-30862-newsletter.tsx
-export function NewsletterSection({ photo }: NewsletterSectionProps) {
+const DEFAULT_PHOTO = {
+  src: "/images/home/newsletter-home.png",
+  alt: "Grilled fish and bole (roasted plantain) platter with pepper sauce",
+};
+
+/**
+ * Newsletter / subscribe section shared across all pages.
+ * - Left half: Amber (#faae33) background with Di Grotesk headline, name & email pill inputs,
+ *   full-width dark brown subscribe button, and matching amber zigzag dividers top & bottom.
+ * - Right half: Red (brand-red) background with the signature grilled fish platter photo positioned
+ *   at left: -25%, top: 43%, width: 152%, height: 84%, and matching red zigzag dividers top & bottom.
+ */
+export function NewsletterSection({ photo = DEFAULT_PHOTO }: NewsletterSectionProps) {
+  const currentPhoto = photo?.src ? photo : DEFAULT_PHOTO;
+
   return (
-    <section className="relative">
-      <WaveDivider color="var(--color-brand-amber-dark)" edge="top" />
-      <div className="bg-brand-amber-dark flex flex-col md:flex-row">
-        <div className="relative flex-1 px-[24px] py-[60px] sm:px-[61px] sm:py-[100px] md:py-[135px]">
+    <section className="relative z-20">
+      <div className="flex flex-col md:flex-row">
+        {/* Left half: Amber column */}
+        <div className="bg-brand-amber-dark relative flex flex-1 flex-col justify-between px-[24px] py-[60px] sm:px-[61px] sm:py-[100px] md:py-[120px]">
+          <ZigzagDivider color="var(--color-brand-amber-dark)" edge="top" />
+
           <p
-            className="font-display font-bold tracking-[-0.56px] text-[#402011] uppercase"
-            style={{ fontSize: "clamp(32px, 6.5vw, 52.5px)", lineHeight: 1.01 }}
+            className="font-display font-bold tracking-[-0.56px] text-[#402011] uppercase max-w-[640px]"
+            style={{ fontSize: "clamp(32px, 5.5vw, 52.5px)", lineHeight: 1.01 }}
           >
             Hot, fresh, at your door in under 30 minutes. Or pick it up free — your call.
           </p>
 
-          <form className="mt-[60px] flex flex-wrap gap-[20px] sm:mt-[150px]">
-            <div className="rounded-pill flex-1 border border-[rgba(64,32,17,0.35)] px-[40px] py-[12px]">
-              <input
-                type="text"
-                placeholder="Enter your full name"
-                className="font-body w-full bg-transparent text-[18px] tracking-[0.08px] text-[#402011] uppercase placeholder:text-[#402011] focus:outline-none"
-              />
+          <form className="mt-[50px] flex flex-wrap gap-[16px] sm:mt-[100px]">
+            <div className="flex w-full flex-col gap-[16px] sm:flex-row">
+              <div className="rounded-pill flex-1 border border-[rgba(64,32,17,0.35)] px-[32px] py-[12px]">
+                <input
+                  type="text"
+                  placeholder="ENTER YOUR FULL NAME"
+                  aria-label="Full name"
+                  className="font-body w-full bg-transparent text-[16px] sm:text-[18px] tracking-[0.08px] text-[#402011] uppercase placeholder:text-[#402011] focus:outline-none"
+                />
+              </div>
+              <div className="rounded-pill flex-1 border border-[rgba(64,32,17,0.35)] px-[32px] py-[12px] text-center">
+                <input
+                  type="email"
+                  placeholder="ENTER YOUR E-MAIL"
+                  aria-label="Email address"
+                  className="font-body w-full bg-transparent text-center text-[16px] sm:text-[18px] tracking-[0.08px] text-[#402011] uppercase placeholder:text-[#402011] focus:outline-none"
+                />
+              </div>
             </div>
-            <div className="rounded-pill w-full border border-[rgba(64,32,17,0.35)] px-[25px] py-[12px] text-center md:min-w-[276px] md:w-auto md:flex-1">
-              <input
-                type="email"
-                placeholder="Enter your E-MAIL"
-                className="font-body w-full bg-transparent text-center text-[18px] tracking-[0.08px] text-[#402011] uppercase placeholder:text-[#402011] focus:outline-none"
-              />
-            </div>
+
             <button
               type="submit"
-              // TODO: no newsletter backend exists yet — form does not submit anywhere.
-              className="rounded-pill font-body w-full bg-[#402011] py-[20px] text-[20px] tracking-[-0.1px] text-[#faae33] uppercase"
+              className="rounded-pill font-body w-full bg-[#402011] py-[18px] text-[18px] sm:text-[20px] font-bold tracking-[-0.1px] text-[#faae33] uppercase transition-opacity hover:opacity-90"
             >
               Subscribe
             </button>
-            <p className="font-display w-full text-[12px] tracking-[-0.085px] text-[#402011] uppercase">
+
+            <p className="font-display w-full text-[11px] sm:text-[12px] tracking-[-0.085px] text-[#402011] uppercase">
               By signing up for updates, you agree to our{" "}
               <a href="#" className="underline">
                 privacy policy
@@ -52,23 +70,30 @@ export function NewsletterSection({ photo }: NewsletterSectionProps) {
               terms.
             </p>
           </form>
+
+          <ZigzagDivider color="var(--color-brand-amber-dark)" edge="bottom" />
         </div>
 
-        {/* Right panel: literal red bg with the photo overflowing past the left/bottom edges
-            (node "Frame 2147240054" — image positioned at roughly x:-15%, y:43%, w:152%, h:84%
-            of its container, clipped by the panel's overflow-hidden, not a simple full-bleed
-            object-cover fill). Confirmed against the Figma screenshot, not fetched via MCP. */}
-        <div className="relative min-h-[320px] flex-1 overflow-hidden bg-brand-red md:min-h-0">
-          {photo ? (
-            <div className="absolute top-[43%] left-[-15%] h-[84%] w-[152%]">
-              <Image src={photo.src} alt={photo.alt} fill className="object-cover" />
+        {/* Right half: Red column with food platter photo */}
+        {/* Right half: Red column with food platter photo */}
+        <div className="bg-brand-red relative flex-1 min-h-[420px] sm:min-h-[520px] md:min-h-[640px] lg:min-h-[760px]">
+          <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
+            <div className="pointer-events-none relative h-[80%] w-[90%]">
+              <Image
+                src={currentPhoto.src}
+                alt={currentPhoto.alt}
+                fill
+                priority
+                className="object-contain"
+                sizes="(min-width: 768px) 50vw, 100vw"
+              />
             </div>
-          ) : (
-            <AssetPending label="Newsletter section photo" className="h-full w-full" />
-          )}
+          </div>
+
+          <ZigzagDivider color="var(--color-brand-red)" edge="top" />
+          <ZigzagDivider color="var(--color-brand-red)" edge="bottom" />
         </div>
       </div>
-      <WaveDivider color="var(--color-brand-amber-dark)" edge="bottom" />
     </section>
   );
 }

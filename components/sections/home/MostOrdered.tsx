@@ -11,51 +11,51 @@ import { WaveDivider } from "@/components/ui/WaveDivider";
 // canvas); converted to percentages of the container below so it scales fluidly instead of
 // overflowing under 1263px, with an explicit aspect-ratio standing in for the old fixed height.
 export function MostOrdered() {
-  return (
-    <section className="bg-brand-amber-dark relative">
-      <WaveDivider color="var(--color-brand-amber-dark)" edge="top" />
-      <div className="flex flex-col items-center gap-[22px] px-6 py-[79px]">
-        <p
-          className="font-display max-w-[651px] text-center font-extrabold text-[#292d32] uppercase"
-          style={{ fontSize: "clamp(36px, 8vw, 96px)", lineHeight: 0.91 }}
-        >
-          Most Ordered Right Now
-        </p>
-        <div className="shadow-pill rounded-pill border-2 border-black bg-white p-[15px]">
-          <p className="font-display text-[28px] font-bold text-[#1a1a1a]">See Full Menu</p>
-        </div>
-      </div>
+    return (
+        <section className="bg-brand-amber-dark relative -z-30">
+            <WaveDivider color="var(--color-brand-amber-dark)" edge="top" />
+            <div className="flex flex-col items-center gap-[22px] px-6 py-[79px]">
+                <p
+                    className="font-display max-w-[651px] text-center font-extrabold text-[#292d32] uppercase"
+                    style={{ fontSize: "clamp(36px, 8vw, 96px)", lineHeight: 0.91 }}
+                >
+                    Most Ordered Right Now
+                </p>
+                <div className="shadow-pill rounded-pill border-2 border-black bg-white p-[15px]">
+                    <p className="font-display text-[28px] font-bold text-[#1a1a1a]">See Full Menu</p>
+                </div>
+            </div>
 
-      <div
-        className="relative mx-auto w-full max-w-[1263px] pb-[79px]"
-        style={{ aspectRatio: "1263 / 1123" }}
-      >
-        <Image
-          src="/icons/sunburst.svg"
-          alt=""
-          aria-hidden
-          width={1100}
-          height={1123}
-          className="pointer-events-none absolute top-0 left-1/2 w-[87%] -translate-x-1/2"
-        />
-        <div
-          className="absolute top-[17%] left-1/2 h-[84.5%] w-[94%] -translate-x-1/2 overflow-hidden"
-        >
-          <Image
-            src="/images/home/most-ordered.png"
-            alt="Bowl of shrimp lo mein noodles"
-            fill
-            className="object-cover"
-          />
-        </div>
-        <div className="absolute top-[29.5%] right-0 z-10 w-[15.8%]" style={{ aspectRatio: 1 }}>
-          <Image src="/icons/badge-hot-deal-large.svg" alt="" fill aria-hidden />
-          <p className="font-body absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center text-[clamp(14px,1.6vw,24px)] font-extrabold text-white uppercase">
-            Hot deal
-          </p>
-        </div>
-      </div>
-      <WaveDivider color="var(--color-brand-amber-dark)" edge="bottom" />
-    </section>
-  );
+            <div
+                className="relative -mb-26 lg:-mb-72 mx-auto w-full max-w-[1263px] pb-[79px]"
+                style={{ aspectRatio: "1263 / 1123" }}
+            >
+                <Image
+                    src="/icons/sunburst.svg"
+                    alt=""
+                    aria-hidden
+                    width={1100}
+                    height={1123}
+                    className="pointer-events-none absolute top-0 left-1/2 w-[87%] -translate-x-1/2"
+                />
+                <div
+                    className="absolute -top-[10%] left-1/2 h-[84.5%] w-[94%] -translate-x-1/2 overflow-hidden"
+                >
+                    <Image
+                        src="/images/home/most-ordered.png"
+                        alt="Bowl of shrimp lo mein noodles"
+                        fill
+                        className="object-cover"
+                    />
+                </div>
+                <div className="absolute top-[29.5%] right-0 z-10 w-[15.8%]" style={{ aspectRatio: 1 }}>
+                    <Image src="/icons/badge-hot-deal-large.svg" alt="" fill aria-hidden />
+                    <p className="font-body absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center text-[clamp(14px,1.6vw,24px)] font-extrabold text-white uppercase">
+                        Hot deal
+                    </p>
+                </div>
+            </div>
+            <WaveDivider color="var(--color-brand-amber-dark)" edge="bottom" />
+        </section>
+    );
 }
